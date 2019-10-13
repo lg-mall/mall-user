@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class PageODTO<T> implements Serializable {
+public class PageResponse<T> implements Serializable {
 
     private long count;
 

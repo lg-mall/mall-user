@@ -2,7 +2,7 @@ package com.practice.mall.user.repository;
 
 import com.practice.mall.user.ao.PageAO;
 import com.practice.mall.user.entity.Merchant;
-import com.practice.mall.user.request.MerchantQueryRequest;
+import com.practice.mall.user.request.MerchantQueryPageIDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -48,9 +48,9 @@ public interface MerchantMapper {
      */
     int updateByPrimaryKey(Merchant record);
 
-    List<Merchant> selectFuzzyByPage(@Param("page") PageAO page, @Param("query") MerchantQueryRequest query);
+    List<Merchant> selectFuzzyByPage(@Param("page") PageAO page, @Param("query") MerchantQueryPageIDTO query);
 
-    long selectFuzzyCount(@Param("query") MerchantQueryRequest query);
+    long selectFuzzyCount(@Param("query") MerchantQueryPageIDTO query);
 
     long selectMerchantExistence(@Param("record") Merchant record);
 }

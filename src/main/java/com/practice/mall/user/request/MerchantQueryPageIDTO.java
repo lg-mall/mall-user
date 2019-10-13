@@ -3,7 +3,7 @@ package com.practice.mall.user.request;
 import lombok.Data;
 
 @Data
-public class MerchantQueryRequest {
+public class MerchantQueryPageIDTO {
     private Long id;
 
     private String merchantName;

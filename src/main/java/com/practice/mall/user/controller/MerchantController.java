@@ -1,11 +1,11 @@
 package com.practice.mall.user.controller;
 
 import com.practice.mall.user.response.Response;
-import com.practice.mall.user.request.MerchantQueryRequest;
+import com.practice.mall.user.request.MerchantQueryPageIDTO;
 import com.practice.mall.user.request.MerchantRegisterRequest;
 import com.practice.mall.user.request.PageRequest;
-import com.practice.mall.user.response.MerchantODTO;
-import com.practice.mall.user.response.PageODTO;
+import com.practice.mall.user.response.MerchantPageODTO;
+import com.practice.mall.user.response.PageResponse;
 import com.practice.mall.user.service.MerchantService;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +24,7 @@ public class MerchantController {
     }
 
     @GetMapping("/list")
-    Response<PageODTO<MerchantODTO>> listByPaging(PageRequest<MerchantQueryRequest> pageRequest) {
+    Response<PageResponse<MerchantPageODTO>> listByPaging(PageRequest<MerchantQueryPageIDTO> pageRequest) {
 
         return merchantService.listByPaging(pageRequest);
     }

@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class MerchantODTO implements Serializable {
+public class MerchantPageODTO implements Serializable {
     private Long id;
 
     private String merchantName;
