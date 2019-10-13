@@ -1,4 +1,4 @@
-package com.practice.mall.user.response;
+package com.practice.mall.user.response.dto;
 
 import lombok.Data;
 

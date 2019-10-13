@@ -2,7 +2,7 @@ package com.practice.mall.user.repository;
 
 import com.practice.mall.user.ao.PageAO;
 import com.practice.mall.user.entity.Merchant;
-import com.practice.mall.user.request.MerchantQueryPageIDTO;
+import com.practice.mall.user.request.dto.MerchantQueryPageIDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

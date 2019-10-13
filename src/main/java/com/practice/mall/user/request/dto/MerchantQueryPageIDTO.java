@@ -1,4 +1,4 @@
-package com.practice.mall.user.request;
+package com.practice.mall.user.request.dto;
 
 import lombok.Data;
 
