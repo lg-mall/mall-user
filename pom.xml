@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.practice.mall</groupId>
-    <artifactId>mall-user</artifactId>
+    <artifactId>mall-iam</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mall-user</name>
+    <name>mall-iam</name>
     <description>mall-user</description>
 
     <properties>
