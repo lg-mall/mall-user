@@ -2,16 +2,16 @@ package com.practice.mall.user.util;
 
 import com.practice.mall.user.ao.PageAO;
 import com.practice.mall.user.constants.MallUserConstant;
-import com.practice.mall.user.request.PageRequest;
+import com.practice.mall.user.request.PageIDTO;
 
 public class PageUtil {
     private PageUtil() {
     }
 
-    public static PageAO convertToPageRqsAO(PageRequest pageRequest) {
+    public static PageAO convertToPageRqsAO(PageIDTO pageIDTO) {
         PageAO pageAO = new PageAO();
-        int currentPage = pageRequest.getCurrentPage();
-        int pageSize = pageRequest.getPageSize();
+        int currentPage = pageIDTO.getCurrentPage();
+        int pageSize = pageIDTO.getPageSize();
 
         pageSize = pageSize > 0 ? pageSize : MallUserConstant.DEFAULT_PAGE_SIZE;
 

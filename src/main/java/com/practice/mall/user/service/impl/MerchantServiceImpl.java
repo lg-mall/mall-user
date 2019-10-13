@@ -8,8 +8,8 @@ import com.practice.mall.user.exception.ResultAssertException;
 import com.practice.mall.user.repository.MerchantMapper;
 import com.practice.mall.user.request.*;
 import com.practice.mall.user.response.Response;
-import com.practice.mall.user.response.MerchantResponse;
-import com.practice.mall.user.response.PageResponse;
+import com.practice.mall.user.response.MerchantODTO;
+import com.practice.mall.user.response.PageODTO;
 import com.practice.mall.user.service.MerchantService;
 import com.practice.mall.user.util.PageUtil;
 import org.springframework.stereotype.Service;
@@ -29,9 +29,9 @@ public class MerchantServiceImpl implements MerchantService {
 
     @UserTransactional
     @Override
-    public Response register(MerchantRegisterRequest merchantRegisterRequest) {
+    public Response register(MerchantRegisterIDTO merchantRegisterIDTO) {
         Merchant merchant = new Merchant();
-        String merchantName = merchantRegisterRequest.getMerchantName();
+        String merchantName = merchantRegisterIDTO.getMerchantName();
         Merchant record=new Merchant();
         record.setMerchantName(merchantName);
         long existence = merchantMapper.selectMerchantExistence(record);
@@ -39,7 +39,7 @@ public class MerchantServiceImpl implements MerchantService {
             throw new ResultAssertException(ResultCodeEnum.REGISTER_MERCHANT_NAME_EXISTENCE.getCode(), "the merchant name '" + merchantName + "' already exists");
         }
         merchant.setMerchantName(merchantName);
-        merchant.setPhoneNum(merchantRegisterRequest.getPhoneNum());
+        merchant.setPhoneNum(merchantRegisterIDTO.getPhoneNum());
 
         int changed = merchantMapper.insert(merchant);
         if (changed < 1) {
@@ -49,16 +49,16 @@ public class MerchantServiceImpl implements MerchantService {
     }
 
     @Override
-    public Response<PageResponse<MerchantResponse>> listByPaging(PageRequest<MerchantQueryRequest> pageRequest) {
-        PageAO pageAO = PageUtil.convertToPageRqsAO(pageRequest);
-        MerchantQueryRequest searchCondition = pageRequest.getSearchCondition();
+    public Response<PageODTO<MerchantODTO>> listByPaging(PageIDTO<MerchantQueryIDTO> pageIDTO) {
+        PageAO pageAO = PageUtil.convertToPageRqsAO(pageIDTO);
+        MerchantQueryIDTO searchCondition = pageIDTO.getSearchCondition();
         List<Merchant> merchants = merchantMapper.selectFuzzyByPage(pageAO, searchCondition);
         long count = merchantMapper.selectFuzzyCount(searchCondition);
-        PageResponse<MerchantResponse> rspDTO = new PageResponse<>();
+        PageODTO<MerchantODTO> rspDTO = new PageODTO<>();
         rspDTO.setCount(count);
 
-        List<MerchantResponse> collect = merchants.stream().map(merchant -> {
-            MerchantResponse dto = new MerchantResponse();
+        List<MerchantODTO> collect = merchants.stream().map(merchant -> {
+            MerchantODTO dto = new MerchantODTO();
             dto.setId(merchant.getId());
             dto.setMerchantName(merchant.getMerchantName());
             dto.setPhoneNum(merchant.getPhoneNum());
