@@ -29,9 +29,9 @@ public class MerchantServiceImpl implements MerchantService {
 
     @UserTransactional
     @Override
-    public Response register(MerchantRegisterIDTO merchantRegisterIDTO) {
+    public Response register(MerchantRegisterRequest merchantRegisterRequest) {
         Merchant merchant = new Merchant();
-        String merchantName = merchantRegisterIDTO.getMerchantName();
+        String merchantName = merchantRegisterRequest.getMerchantName();
         Merchant record=new Merchant();
         record.setMerchantName(merchantName);
         long existence = merchantMapper.selectMerchantExistence(record);
@@ -39,7 +39,7 @@ public class MerchantServiceImpl implements MerchantService {
             throw new ResultAssertException(ResultCodeEnum.REGISTER_MERCHANT_NAME_EXISTENCE.getCode(), "the merchant name '" + merchantName + "' already exists");
         }
         merchant.setMerchantName(merchantName);
-        merchant.setPhoneNum(merchantRegisterIDTO.getPhoneNum());
+        merchant.setPhoneNum(merchantRegisterRequest.getPhoneNum());
 
         int changed = merchantMapper.insert(merchant);
         if (changed < 1) {
@@ -49,9 +49,9 @@ public class MerchantServiceImpl implements MerchantService {
     }
 
     @Override
-    public Response<PageODTO<MerchantODTO>> listByPaging(PageIDTO<MerchantQueryIDTO> pageIDTO) {
-        PageAO pageAO = PageUtil.convertToPageRqsAO(pageIDTO);
-        MerchantQueryIDTO searchCondition = pageIDTO.getSearchCondition();
+    public Response<PageODTO<MerchantODTO>> listByPaging(PageRequest<MerchantQueryRequest> pageRequest) {
+        PageAO pageAO = PageUtil.convertToPageRqsAO(pageRequest);
+        MerchantQueryRequest searchCondition = pageRequest.getSearchCondition();
         List<Merchant> merchants = merchantMapper.selectFuzzyByPage(pageAO, searchCondition);
         long count = merchantMapper.selectFuzzyCount(searchCondition);
         PageODTO<MerchantODTO> rspDTO = new PageODTO<>();

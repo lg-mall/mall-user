@@ -1,9 +1,9 @@
 package com.practice.mall.user.controller;
 
 import com.practice.mall.user.response.Response;
-import com.practice.mall.user.request.MerchantQueryIDTO;
-import com.practice.mall.user.request.MerchantRegisterIDTO;
-import com.practice.mall.user.request.PageIDTO;
+import com.practice.mall.user.request.MerchantQueryRequest;
+import com.practice.mall.user.request.MerchantRegisterRequest;
+import com.practice.mall.user.request.PageRequest;
 import com.practice.mall.user.response.MerchantODTO;
 import com.practice.mall.user.response.PageODTO;
 import com.practice.mall.user.service.MerchantService;
@@ -19,14 +19,14 @@ public class MerchantController {
     }
 
     @PostMapping("/register")
-    Response save(MerchantRegisterIDTO merchantRegisterIDTO) {
-        return merchantService.register(merchantRegisterIDTO);
+    Response save(MerchantRegisterRequest merchantRegisterRequest) {
+        return merchantService.register(merchantRegisterRequest);
     }
 
     @GetMapping("/list")
-    Response<PageODTO<MerchantODTO>> listByPaging(PageIDTO<MerchantQueryIDTO> pageIDTO) {
+    Response<PageODTO<MerchantODTO>> listByPaging(PageRequest<MerchantQueryRequest> pageRequest) {
 
-        return merchantService.listByPaging(pageIDTO);
+        return merchantService.listByPaging(pageRequest);
     }
 
 

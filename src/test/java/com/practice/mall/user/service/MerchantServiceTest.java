@@ -3,7 +3,7 @@ package com.practice.mall.user.service;
 import com.practice.mall.user.MallUserApplicationTests;
 import com.practice.mall.user.enums.ResultCodeEnum;
 import com.practice.mall.user.response.Response;
-import com.practice.mall.user.request.MerchantRegisterIDTO;
+import com.practice.mall.user.request.MerchantRegisterRequest;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.assertj.core.api.Assertions;
@@ -17,7 +17,7 @@ public class MerchantServiceTest extends MallUserApplicationTests {
 
     @Test
     public void registerNormal() {
-        MerchantRegisterIDTO dto = new MerchantRegisterIDTO();
+        MerchantRegisterRequest dto = new MerchantRegisterRequest();
 
         dto.setMerchantName("test-" + RandomStringUtils.randomAlphabetic(5));
         dto.setPhoneNum(RandomUtils.nextInt(10000, 100000) + "");
@@ -28,7 +28,7 @@ public class MerchantServiceTest extends MallUserApplicationTests {
     }
     @Test
     public void registerAbnormal() {
-        MerchantRegisterIDTO dto = new MerchantRegisterIDTO();
+        MerchantRegisterRequest dto = new MerchantRegisterRequest();
 
         dto.setMerchantName("test-john");
         dto.setPhoneNum("110");

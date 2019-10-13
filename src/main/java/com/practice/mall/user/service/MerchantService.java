@@ -7,9 +7,9 @@ import com.practice.mall.user.response.PageODTO;
 
 public interface MerchantService {
 
-    Response register(MerchantRegisterIDTO merchantRegisterIDTO);
+    Response register(MerchantRegisterRequest merchantRegisterRequest);
 
-    Response<PageODTO<MerchantODTO>> listByPaging(PageIDTO<MerchantQueryIDTO> pageIDTO);
+    Response<PageODTO<MerchantODTO>> listByPaging(PageRequest<MerchantQueryRequest> pageRequest);
 
 
 }
